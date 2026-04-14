@@ -39,7 +39,7 @@ const roleOptions = [
   { label: "Operations", value: "ops" },
 ];
 
-export default function UIKitPage() {
+function UIKitPage() {
   const [dialogOpen, setDialogOpen] = useState(false);
 
   return (
@@ -49,18 +49,20 @@ export default function UIKitPage() {
       </Head>
 
       <div
-        className={`${titleFont.className} ${monoFont.variable} min-h-screen bg-[radial-gradient(circle_at_top,#10345f,#070e1a_45%,#05070c_100%)] px-5 py-10 text-slate-100 sm:px-8`}
+        className={`${titleFont.className} ${monoFont.variable} bg-[radial-gradient(circle_at_top,#10345f,#070e1a_45%,#05070c_100%)] px-5 py-10 text-slate-100 sm:px-8`}
       >
         <main className="mx-auto w-full max-w-6xl space-y-8">
           <section className="relative overflow-hidden rounded-3xl border border-cyan-300/20 bg-slate-950/60 p-8 shadow-[0_30px_80px_-40px_rgba(14,165,233,0.55)] backdrop-blur">
             <div className="pointer-events-none absolute -top-32 -right-16 h-64 w-64 rounded-full bg-cyan-400/20 blur-3xl" />
             <Badge tone="info">Design System</Badge>
             <h1 className="mt-3 max-w-3xl text-3xl font-bold leading-tight sm:text-5xl">
-              Components crafted for fast product screens and clean interaction patterns.
+              Components crafted for fast product screens and clean interaction
+              patterns.
             </h1>
             <p className="mt-4 max-w-2xl text-sm text-slate-300 sm:text-base">
-              This page showcases reusable UI primitives from the components folder. Mix and
-              match them across your pages without rewriting styles.
+              This page showcases reusable UI primitives from the components
+              folder. Mix and match them across your pages without rewriting
+              styles.
             </p>
             <div className="mt-6 flex flex-wrap items-center gap-3">
               <Button size="lg">Create Workspace</Button>
@@ -70,7 +72,11 @@ export default function UIKitPage() {
               <Button variant="ghost" size="lg">
                 Open Figma Mapping
               </Button>
-              <Button variant="danger" size="lg" onClick={() => setDialogOpen(true)}>
+              <Button
+                variant="danger"
+                size="lg"
+                onClick={() => setDialogOpen(true)}
+              >
                 Launch Dialog
               </Button>
             </div>
@@ -81,7 +87,9 @@ export default function UIKitPage() {
               <Card key={metric.label}>
                 <p className="text-sm text-slate-400">{metric.label}</p>
                 <div className="mt-2 flex items-end justify-between">
-                  <p className="text-3xl font-bold tracking-tight">{metric.value}</p>
+                  <p className="text-3xl font-bold tracking-tight">
+                    {metric.value}
+                  </p>
                   <Badge tone={metric.tone}>Live</Badge>
                 </div>
               </Card>
@@ -276,7 +284,8 @@ export default function UIKitPage() {
             >
               <div className="space-y-4">
                 <p className="text-sm text-slate-300">
-                  Use the dialog for confirmations, task flows, or focused forms.
+                  Use the dialog for confirmations, task flows, or focused
+                  forms.
                 </p>
                 <Button onClick={() => setDialogOpen(true)}>Open dialog</Button>
               </div>
@@ -319,8 +328,9 @@ export default function UIKitPage() {
       >
         <div className="space-y-3">
           <p>
-            Dialogs keep users focused on one task at a time. This example uses the reusable
-            dialog component with backdrop click and escape handling.
+            Dialogs keep users focused on one task at a time. This example uses
+            the reusable dialog component with backdrop click and escape
+            handling.
           </p>
           <div className="rounded-2xl border border-cyan-300/20 bg-cyan-400/10 p-4 text-cyan-100">
             Review the details below before you confirm the action.
@@ -330,3 +340,7 @@ export default function UIKitPage() {
     </>
   );
 }
+
+UIKitPage.hideSidebar = true;
+
+export default UIKitPage;
