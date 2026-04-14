@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { Geist, Geist_Mono } from "next/font/google";
 
 const geistSans = Geist({
@@ -71,6 +72,12 @@ export default function Home() {
           >
             Documentation
           </a>
+          <Link
+            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-cyan-500/40 px-5 text-cyan-700 transition-colors hover:bg-cyan-50 dark:text-cyan-300 dark:hover:bg-cyan-500/10 md:w-39.5"
+            href="/ui-kit"
+          >
+            UI Kit
+          </Link>
         </div>
       </main>
     </div>
