@@ -9,6 +9,8 @@ export type Generated<T> = T extends ColumnType<infer S, infer I, infer U>
   ? ColumnType<S, I | undefined, U>
   : ColumnType<T, T | undefined, T>;
 
+export type Numeric = ColumnType<string, number | string, number | string>;
+
 export type Timestamp = ColumnType<Date, Date | string, Date | string>;
 
 export interface Account {
@@ -27,6 +29,67 @@ export interface Account {
   userId: string;
 }
 
+export interface Equipment {
+  board_no: string;
+  created_at: Generated<Timestamp>;
+  current_hours: Generated<number>;
+  equipment_id: Generated<number>;
+  model: string;
+  name: string;
+  type: string;
+  updated_at: Generated<Timestamp>;
+}
+
+export interface EquipmentPartNorm {
+  created_at: Generated<Timestamp>;
+  equipment_id: number;
+  norm_id: Generated<number>;
+  part_id: number;
+  replacement_interval_hours: number | null;
+  replacement_interval_mileage: number | null;
+  updated_at: Generated<Timestamp>;
+}
+
+export interface Part {
+  category: string | null;
+  created_at: Generated<Timestamp>;
+  cross_no: string | null;
+  mdm_code: string;
+  name: string;
+  part_id: Generated<number>;
+  price: Generated<Numeric>;
+  smat_code: string | null;
+  unit: string;
+  updated_at: Generated<Timestamp>;
+}
+
+export interface PartInstance {
+  created_at: Generated<Timestamp>;
+  equipment_id: number | null;
+  part_id: number;
+  part_instance_id: Generated<number>;
+  quantity: number;
+  supplier_id: number | null;
+  unit_price: Numeric;
+  updated_at: Generated<Timestamp>;
+  warehouse_id: number | null;
+}
+
+export interface RepairJob {
+  created_at: Generated<Timestamp>;
+  description: string | null;
+  equipment_id: number;
+  equipment_mileage: number | null;
+  equipment_work_hours: number | null;
+  job_id: Generated<number>;
+  job_number: string;
+  part_instance_id: number | null;
+  repair_end_date: Timestamp | null;
+  repair_start_date: Timestamp | null;
+  repair_type: string;
+  total_amount: Numeric | null;
+}
+
 export interface Session {
   createdAt: Generated<Timestamp>;
   expiresAt: Timestamp;
@@ -36,6 +99,13 @@ export interface Session {
   updatedAt: Timestamp;
   userAgent: string | null;
   userId: string;
+}
+
+export interface Supplier {
+  created_at: Generated<Timestamp>;
+  name: string;
+  supplier_id: Generated<number>;
+  updated_at: Generated<Timestamp>;
 }
 
 export interface User {
@@ -57,9 +127,25 @@ export interface Verification {
   value: string;
 }
 
+export interface Warehouse {
+  code: string;
+  created_at: Generated<Timestamp>;
+  location: string | null;
+  name: string;
+  updated_at: Generated<Timestamp>;
+  warehouse_id: Generated<number>;
+}
+
 export interface DB {
   account: Account;
+  equipment: Equipment;
+  equipment_part_norm: EquipmentPartNorm;
+  part: Part;
+  part_instance: PartInstance;
+  repair_job: RepairJob;
   session: Session;
+  supplier: Supplier;
   user: User;
   verification: Verification;
+  warehouse: Warehouse;
 }
